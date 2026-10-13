@@ -1,345 +1,297 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f4f1">
-  <meta name="description" content="康选臣的个人主页，SHNU 计算机科学与技术专业。">
-  <title>康选臣 — Personal Homepage</title>
-  <style>
-    :root {
-      --paper: #f4f4f1;
-      --ink: #171717;
-      --muted: #737373;
-      --line: #d9d9d4;
-      --panel: #ecece8;
-      --dark: #202020;
-      --white: #fff;
-      --max: 1120px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: var(--paper); color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.65; letter-spacing: -.015em;
-    }
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
-    header {
-      height: 78px; display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-    }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 750; letter-spacing: -.04em; }
-    .brand-mark {
-      width: 34px; height: 34px; display: grid; place-items: center;
-      background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 800;
-      border-radius: 50%;
-    }
-    nav { display: flex; align-items: center; gap: 28px; color: #555; font-size: 13px; }
-    nav a:hover { color: #000; }
-    .nav-tag { border: 1px solid #bdbdb7; padding: 7px 12px; border-radius: 99px; color: #333; }
-    .hero { padding: 104px 0 90px; display: grid; grid-template-columns: 1.4fr .6fr; gap: 64px; align-items: end; }
-    .eyebrow { text-transform: uppercase; font-size: 11px; letter-spacing: .18em; color: var(--muted); font-weight: 700; }
-    h1 { font-size: clamp(52px, 8vw, 100px); line-height: .99; letter-spacing: -.075em; margin: 22px 0 26px; font-weight: 780; }
-    h1 span { display: block; color: #8b8b85; font-size: .42em; letter-spacing: -.045em; margin-top: 18px; font-weight: 500; }
-    .lead { max-width: 610px; color: #555; font-size: clamp(16px, 2vw, 19px); line-height: 1.9; }
-    .hero-side { border-left: 1px solid var(--line); padding: 8px 0 8px 28px; }
-    .side-label { font-size: 11px; color: var(--muted); letter-spacing: .13em; text-transform: uppercase; margin-bottom: 8px; }
-    .side-value { font-size: 17px; font-weight: 650; margin-bottom: 24px; }
-    .scroll-note { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; font-size: 12px; color: #555; }
-    .scroll-note:before { content: ""; display: inline-block; width: 34px; height: 1px; background: #777; }
-    .section { padding: 70px 0; border-top: 1px solid var(--line); }
-    .section-head { display: grid; grid-template-columns: 220px 1fr; gap: 36px; margin-bottom: 34px; }
-    .section-index { font-size: 12px; color: var(--muted); letter-spacing: .12em; }
-    h2 { font-size: clamp(27px, 4vw, 42px); letter-spacing: -.055em; line-height: 1.15; margin: 0; }
-    .section-intro { color: #62625d; max-width: 620px; margin: 14px 0 0; }
-    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
-    .about-copy, .info-card { background: var(--panel); padding: 28px; border-radius: 4px; }
-    .about-copy p { margin: 0 0 14px; color: #484843; }
-    .about-copy p:last-child { margin-bottom: 0; }
-    .info-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
-    .big-number { font-size: 56px; line-height: 1; font-weight: 750; letter-spacing: -.08em; }
-    .card-caption { font-size: 13px; color: #666; }
-    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .focus-card { padding: 23px; border: 1px solid var(--line); min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; transition: background .2s, transform .2s; }
-    .focus-card:hover { background: #e9e9e5; transform: translateY(-3px); }
-    .focus-num { color: #898982; font-size: 11px; letter-spacing: .1em; }
-    .focus-card h3 { font-size: 20px; letter-spacing: -.04em; margin: 18px 0 7px; }
-    .focus-card p { color: #6a6a64; font-size: 13px; margin: 0; }
-    .project-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; border-top: 1px solid var(--line); padding: 24px 0; }
-    .project-row:last-child { border-bottom: 1px solid var(--line); }
-    .project-title { font-size: 19px; font-weight: 650; margin-bottom: 4px; }
-    .project-desc { color: #70706a; font-size: 13px; }
-    .status { font-size: 11px; padding: 6px 10px; border: 1px solid #c6c6c0; border-radius: 99px; white-space: nowrap; color: #555; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .skill-card { border: 1px solid var(--line); padding: 22px; min-height: 126px; }
-    .skill-name { font-size: 22px; font-weight: 700; letter-spacing: -.04em; }
-    .skill-note { color: #6a6a64; font-size: 12px; margin-top: 10px; }
-    .twin-shell { display: grid; grid-template-columns: .78fr 1.22fr; gap: 18px; align-items: stretch; }
-    .twin-profile { background: #e8e8e3; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 350px; }
-    .avatar-art { width: 96px; height: 96px; border-radius: 50%; background: #202020; color: #f4f4f1; display: grid; place-items: center; font-size: 28px; font-weight: 750; letter-spacing: -.08em; margin: 22px 0; box-shadow: 0 0 0 8px #d9d9d4; }
-    .twin-name { font-size: 25px; font-weight: 750; letter-spacing: -.05em; }
-    .twin-caption { color: #66665f; font-size: 13px; }
-    .twin-chat { border: 1px solid var(--line); padding: 22px; display: flex; flex-direction: column; min-height: 350px; }
-    .chat-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 700; }
-    .online-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #5d7867; margin-right: 7px; }
-    .chat-log { flex: 1; padding: 18px 0; display: flex; flex-direction: column; gap: 12px; }
-    .bubble { max-width: 92%; padding: 12px 14px; border-radius: 3px; font-size: 13px; line-height: 1.75; white-space: pre-line; }
-    .bubble.bot { background: #ededE9; align-self: flex-start; }
-    .bubble.user { background: #242424; color: #f4f4f1; align-self: flex-end; }
-    .quick-asks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .quick-asks button { border: 1px solid #c8c8c1; background: transparent; color: #333; border-radius: 99px; padding: 7px 11px; font: inherit; font-size: 11px; cursor: pointer; }
-    .quick-asks button:hover { background: #e9e9e5; }
-    .chat-form { display: flex; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
-    .chat-form input { min-width: 0; flex: 1; padding: 11px 12px; border: 1px solid #d0d0c9; background: #fafaf8; color: #171717; font: inherit; font-size: 12px; border-radius: 2px; }
-    .chat-form button { border: 0; background: #202020; color: #fff; padding: 0 16px; cursor: pointer; font: inherit; font-size: 12px; }
-    .contact-panel { background: var(--dark); color: var(--paper); padding: 38px; display: flex; justify-content: space-between; align-items: end; gap: 24px; }
-    .contact-panel h2 { font-size: clamp(28px, 4vw, 46px); max-width: 620px; }
-    .contact-panel p { color: #b6b6b0; font-size: 13px; margin-bottom: 0; }
-    .contact-mark { font-size: 12px; border: 1px solid #666; border-radius: 99px; padding: 10px 15px; white-space: nowrap; }
-    footer { display: flex; justify-content: space-between; gap: 16px; padding: 24px 0 34px; color: #777; font-size: 11px; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 32px, var(--max)); }
-      header { height: 68px; }
-      nav { gap: 13px; }
-      nav a:not(.nav-tag) { display: none; }
-      .hero { padding: 74px 0 62px; grid-template-columns: 1fr; gap: 34px; }
-      .hero-side { border-left: 0; border-top: 1px solid var(--line); padding: 22px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
-      .side-value { margin-bottom: 16px; }
-      .scroll-note { margin-top: 8px; }
-      .section { padding: 52px 0; }
-      .section-head { grid-template-columns: 1fr; gap: 12px; }
-      .about-grid, .focus-grid, .skills-grid, .twin-shell { grid-template-columns: 1fr; }
-      .twin-profile, .twin-chat { min-height: auto; }
-      .chat-log { min-height: 145px; }
-      .info-card { min-height: 160px; }
-      .focus-card { min-height: 145px; }
-      .contact-panel { padding: 27px; align-items: start; flex-direction: column; }
-      footer { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="康选臣 · 上海师范大学计算机科学与技术专业本科生 · 个人技术主页" />
+  <title>康选臣 · 个人主页</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="#top" aria-label="返回首页">
-        <span class="brand-mark">KX</span>
-        <span>康选臣 <span style="font-weight:400;color:#777">/ PERSONAL</span></span>
-      </a>
-      <nav aria-label="主导航">
-        <a href="#about">关于</a>
-        <a href="#focus">关注方向</a>
+
+  <!-- 顶部导航 -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="nav-logo">KXC<span class="nav-logo-dot">.</span></a>
+      <nav class="nav-links">
+        <a href="#home">首页</a>
         <a href="#skills">技能</a>
-        <a href="#twin">数字分身</a>
-        <a class="nav-tag" href="#contact">联系我 ↗</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+        <a href="#assistant">助手</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      <section class="hero">
-        <div>
-          <div class="eyebrow">COMPUTER SCIENCE · PERSONAL PROFILE</div>
-          <h1>康选臣<span>KANG XUANCHEN</span></h1>
-          <p class="lead">上海师范大学计算机科学与技术专业本科生。关注编程、软件开发与数字技术，习惯从具体问题出发，用代码把想法变成可以运行的结果。</p>
-          <a class="scroll-note" href="#about">向下探索 · Explore more</a>
+  <main>
+    <!-- 首页 / Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="avatar" aria-hidden="true">
+          <span class="avatar-text">KXC</span>
         </div>
-        <aside class="hero-side">
-          <div>
-            <div class="side-label">University</div>
-            <div class="side-value">SHNU</div>
-          </div>
-          <div>
-            <div class="side-label">Major</div>
-            <div class="side-value">计算机科学与技术</div>
-          </div>
-          <div>
-            <div class="side-label">Current Stage</div>
-            <div class="side-value">本科 · 大三</div>
-          </div>
-          <div>
-            <div class="side-label">Principle</div>
-            <div class="side-value">Learn by Building.</div>
-          </div>
-        </aside>
-      </section>
 
-      <section class="section" id="about">
-        <div class="section-head">
-          <div class="section-index">01 / ABOUT</div>
-          <div>
-            <h2>关于我，<br>以及正在探索的世界。</h2>
-            <p class="section-intro">这里是我的个人数字空间，用来记录学习、实践与成长。它会随着新的项目和新的想法持续更新。</p>
-          </div>
-        </div>
-        <div class="about-grid">
-          <div class="about-copy">
-            <p>你好，我是康选臣，目前就读于 SHNU，专业是计算机科学与技术。</p>
-            <p>我希望把课堂中的知识转化为能够运行、能够展示、也能够不断改进的实际作品。对我来说，写代码不仅是实现功能，也是拆解问题、验证想法和持续学习的过程。</p>
-            <p>我重视动手实践，也愿意把解决问题的过程整理清楚：从理解需求、编写代码，到调试验证，每一步都能带来新的认识。</p>
-          </div>
-          <div class="info-card">
-            <div class="side-label">A small reminder</div>
-            <div class="big-number">01<span style="font-size:22px;color:#888"> / ∞</span></div>
-            <div class="card-caption">第一版不是终点，而是持续迭代的起点。</div>
-          </div>
-        </div>
-      </section>
+        <p class="hero-hello">你好，我是</p>
+        <h1 class="hero-name">康选臣</h1>
 
-      <section class="section" id="focus">
-        <div class="section-head">
-          <div class="section-index">02 / FOCUS</div>
-          <div>
-            <h2>关注方向</h2>
-            <p class="section-intro">以编程基础和实际开发为主线，持续积累解决问题的能力。</p>
-          </div>
-        </div>
-        <div class="focus-grid">
-          <article class="focus-card">
-            <div class="focus-num">AREA — 01</div>
-            <div><h3>计算机基础</h3><p>从基础知识出发，理解程序、算法与系统如何协同工作。</p></div>
-          </article>
-          <article class="focus-card">
-            <div class="focus-num">AREA — 02</div>
-            <div><h3>软件开发</h3><p>通过需求拆解、编码、测试与迭代，把想法落地为可用产品。</p></div>
-          </article>
-          <article class="focus-card">
-            <div class="focus-num">AREA — 03</div>
-            <div><h3>数据与可视化</h3><p>通过数据处理、分析与可视化，让信息更清晰，也让结论更容易理解。</p></div>
-          </article>
-        </div>
-      </section>
+        <p class="hero-major">
+          上海师范大学 · 计算机科学与技术 · 大三
+        </p>
 
-      <section class="section" id="skills">
-        <div class="section-head">
-          <div class="section-index">03 / SKILLS</div>
-          <div>
-            <h2>技术栈</h2>
-            <p class="section-intro">以课程学习和实践应用为基础，重视理解原理、动手实现与调试。</p>
-          </div>
+        <p class="hero-tagline">
+          把想法写成代码，让数据开口说话
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">查看项目</a>
+          <a href="#contact" class="btn btn-ghost">联系我</a>
         </div>
+
+        <a href="#skills" class="hero-scroll" aria-label="向下滚动">
+          <span class="hero-scroll-line"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 关于 -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>01</span> 关于我</h2>
+        <p class="about-text">
+          我是上海师范大学计算机科学与技术专业的大三本科生。通过软件工程、程序设计、数据库原理、计算机网络等课程的学习，打下了扎实的编程基础，积累了较好的软件工程实践能力。
+        </p>
+        <p class="about-text">
+          平时关注 Web 开发、数据处理与可视化、智能交互等方向，通过课程实验与个人项目不断练习，熟悉从需求分析、系统设计、编码实现到测试优化的完整开发流程，能够独立完成并交付小型软件项目。
+        </p>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>02</span> 技术技能</h2>
+
         <div class="skills-grid">
-          <article class="skill-card"><div class="skill-name">Python</div><div class="skill-note">编程基础 · 数据处理与分析</div></article>
-          <article class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-note">网页交互 · 前端逻辑</div></article>
-          <article class="skill-card"><div class="skill-name">HTML / CSS</div><div class="skill-note">页面结构 · 响应式布局</div></article>
-        </div>
-      </section>
+          <article class="skill-card">
+            <h3 class="skill-title">编程语言</h3>
+            <ul class="skill-tags">
+              <li>Python</li>
+              <li>Java</li>
+              <li>JavaScript</li>
+              <li>C / C++</li>
+            </ul>
+          </article>
 
-      <section class="section" id="work">
-        <div class="section-head">
-          <div class="section-index">04 / SELECTED WORK</div>
-          <div>
-            <h2>项目与实践</h2>
-            <p class="section-intro">从课程任务出发，把编程知识应用到可运行、可观察的实践中。</p>
-          </div>
-        </div>
-        <div class="project-row">
-          <div><div class="project-title">个人主页 · W1</div><div class="project-desc">使用 HTML、CSS 与 JavaScript 构建个人介绍页面，并加入可交互的数字分身。</div></div>
-          <span class="status">Web</span>
-        </div>
-        <div class="project-row">
-          <div><div class="project-title">鸢尾花数据可视化</div><div class="project-desc">围绕数据集进行数据观察、可视化表达与样本相似度分析。</div></div>
-          <span class="status">Python / 数据</span>
-        </div>
-        <div class="project-row">
-          <div><div class="project-title">Arduino 传感器实践</div><div class="project-desc">结合震动传感器与 LED 输出，练习数字信号读取、条件判断和循环控制。</div></div>
-          <span class="status">硬件实践</span>
-        </div>
-      </section>
+          <article class="skill-card">
+            <h3 class="skill-title">前端开发</h3>
+            <ul class="skill-tags">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Bootstrap</li>
+              <li>ECharts</li>
+            </ul>
+          </article>
 
-      <section class="section" id="twin">
-        <div class="section-head">
-          <div class="section-index">05 / DIGITAL TWIN</div>
-          <div>
-            <h2>认识我的数字分身</h2>
-            <p class="section-intro">一个基于个人资料设计的交互式数字名片。你可以直接提问，了解我的专业、技能和实践经历。</p>
-          </div>
-        </div>
-        <div class="twin-shell">
-          <div class="twin-profile">
-            <div>
-              <div class="side-label">PERSONAL DIGITAL TWIN</div>
-              <div class="avatar-art" aria-hidden="true">KX</div>
-              <div class="twin-name">康选臣</div>
-              <div class="twin-caption">计算机科学与技术 · 本科生</div>
-            </div>
-            <div class="twin-caption">以我的公开个人资料为基础，提供关于学习方向与实践经历的快捷问答。</div>
-          </div>
-          <div class="twin-chat" aria-label="数字分身问答区">
-            <div class="chat-top"><span><span class="online-dot"></span>选臣的数字分身</span><span class="twin-caption">INTERACTIVE PROFILE</span></div>
-            <div class="chat-log" id="chatLog" aria-live="polite">
-              <div class="bubble bot">你好，我是康选臣的数字分身。你可以问我专业方向、编程技能或做过的实践项目。</div>
-            </div>
-            <div class="quick-asks">
-              <button type="button" data-question="介绍一下你自己">介绍自己</button>
-              <button type="button" data-question="你会哪些编程技术？">编程技能</button>
-              <button type="button" data-question="你做过哪些项目？">项目实践</button>
-              <button type="button" data-question="怎么联系你？">联系方式</button>
-            </div>
-            <form class="chat-form" id="chatForm">
-              <input id="chatInput" type="text" placeholder="试着问：你学什么专业？" aria-label="向数字分身提问" autocomplete="off">
-              <button type="submit">发送 ↗</button>
-            </form>
-          </div>
-        </div>
-      </section>
+          <article class="skill-card">
+            <h3 class="skill-title">后端开发</h3>
+            <ul class="skill-tags">
+              <li>Python Flask</li>
+              <li>Django 基础</li>
+              <li>MySQL</li>
+              <li>SQLite</li>
+            </ul>
+          </article>
 
-      <section class="section" id="contact">
-        <div class="contact-panel">
-          <div>
-            <div class="eyebrow" style="color:#aaa;margin-bottom:16px">OPEN TO LEARNING</div>
-            <h2>保持好奇，<br>让每一次实践都留下痕迹。</h2>
-            <p>欢迎交流计算机学习、编程实践与项目想法。</p>
-          </div>
-          <a class="contact-mark" href="mailto:kang000008@qq.com">kang000008@qq.com ↗</a>
+          <article class="skill-card">
+            <h3 class="skill-title">数据处理</h3>
+            <ul class="skill-tags">
+              <li>Pandas</li>
+              <li>数据可视化</li>
+              <li>数据分析</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-title">开发工具</h3>
+            <ul class="skill-tags">
+              <li>Git / GitHub</li>
+              <li>VS Code</li>
+              <li>Trae</li>
+            </ul>
+          </article>
         </div>
-      </section>
-    </main>
-    <footer>
-      <span>© <span id="year">2026</span> 康选臣. All rights reserved.</span>
-      <a href="mailto:kang000008@qq.com">kang000008@qq.com</a>
-    </footer>
-  </div>
-  <script>
-    const answers = [
-      { keys: ['介绍', '自己', '是谁', '专业', '学什么'], answer: '我是康选臣，就读于上海师范大学，专业是计算机科学与技术。目前主要围绕编程基础、软件开发和数据可视化开展学习与实践。' },
-      { keys: ['技能', '编程', '技术', 'python', 'javascript', 'html', 'css', '语言'], answer: '我目前学习和使用的技术包括 Python、JavaScript、HTML 和 CSS。Python 主要用于编程练习与数据处理，JavaScript、HTML 和 CSS 用于网页结构与交互。' },
-      { keys: ['项目', '实践', '作品', '做过'], answer: '目前的课程实践包括：个人主页网页开发、鸢尾花数据可视化与相似度分析，以及 Arduino 传感器实践。在这些任务中，我练习了页面布局、数据分析、条件判断和循环控制。' },
-      { keys: ['联系', '邮箱', '邮件', 'email'], answer: '可以通过邮箱联系我：kang000008@qq.com。点击页面上的邮箱地址即可发送邮件。' },
-      { keys: ['学校', 'shnu', '上海师范'], answer: '我就读于上海师范大学（SHNU），所学专业是计算机科学与技术。' },
-      { keys: ['数字分身', '你能做什么', '功能'], answer: '我是一个基于康选臣个人主页资料制作的交互式数字分身，可以回答关于个人介绍、专业方向、编程技能、课程实践和联系方式的问题。' }
-    ];
-    const chatLog = document.getElementById('chatLog');
-    const chatForm = document.getElementById('chatForm');
-    const chatInput = document.getElementById('chatInput');
-    function addBubble(text, type) {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble ' + type;
-      bubble.textContent = text;
-      chatLog.appendChild(bubble);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
-    function askTwin(question) {
-      const q = question.trim();
-      if (!q) return;
-      addBubble(q, 'user');
-      const normalized = q.toLowerCase();
-      const match = answers.find(item => item.keys.some(key => normalized.includes(key.toLowerCase())));
-      const reply = match ? match.answer : '你可以问我个人介绍、专业方向、Python / JavaScript 等编程技能、课程实践或联系方式。也欢迎直接通过 kang000008@qq.com 联系我。';
-      addBubble(reply, 'bot');
-    }
-    chatForm.addEventListener('submit', event => {
-      event.preventDefault();
-      askTwin(chatInput.value);
-      chatInput.value = '';
-      chatInput.focus();
-    });
-    document.querySelectorAll('[data-question]').forEach(button => {
-      button.addEventListener('click', () => askTwin(button.dataset.question));
-    });
-  </script>
+      </div>
+    </section>
+
+    <!-- 开发环境 -->
+    <section id="environment" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>03</span> 开发环境</h2>
+        <p class="env-note">Development Environment</p>
+
+        <div class="dev-grid">
+          <div class="dev-item">
+            <span class="dev-label">IDE</span>
+            <span class="dev-value">Trae</span>
+          </div>
+          <div class="dev-item">
+            <span class="dev-label">AI Agent</span>
+            <span class="dev-value">Trae Agent</span>
+          </div>
+          <div class="dev-item">
+            <span class="dev-label">LLM</span>
+            <span class="dev-value">DeepSeek-V4-Pro</span>
+          </div>
+          <div class="dev-item">
+            <span class="dev-label">Version Control</span>
+            <span class="dev-value">GitHub Desktop + GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目 -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>04</span> 项目经历</h2>
+
+        <div class="projects-grid">
+
+          <article class="project-card">
+            <div class="project-head">
+              <span class="project-type type-course">课程实践项目</span>
+              <h3 class="project-name">数据可视化分析系统</h3>
+            </div>
+            <p class="project-desc">
+              针对数据统计和展示需求，设计实现数据可视化分析页面。
+            </p>
+            <ul class="project-stack">
+              <li>Python</li>
+              <li>Pandas</li>
+              <li>ECharts</li>
+              <li>HTML / CSS / JavaScript</li>
+            </ul>
+            <ul class="project-work">
+              <li>完成数据清洗和格式处理</li>
+              <li>使用 Python 进行数据分析</li>
+              <li>使用 ECharts 实现图表展示</li>
+              <li>设计交互式数据展示页面</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-head">
+              <span class="project-type type-personal">个人实践项目</span>
+              <h3 class="project-name">电商数据采集与分析平台</h3>
+            </div>
+            <p class="project-desc">
+              利用爬虫和数据分析技术，实现网络数据采集、处理和展示。
+            </p>
+            <ul class="project-stack">
+              <li>Python</li>
+              <li>Scrapy</li>
+              <li>MongoDB</li>
+              <li>Flask</li>
+            </ul>
+            <ul class="project-work">
+              <li>学习并使用 Scrapy 完成数据采集</li>
+              <li>对数据进行清洗和结构化处理</li>
+              <li>使用数据库保存数据</li>
+              <li>设计简单的数据展示页面</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-head">
+              <span class="project-type type-course">课程实践项目</span>
+              <h3 class="project-name">Arduino 智能硬件交互系统</h3>
+            </div>
+            <p class="project-desc">
+              基于 Arduino 开发板完成传感器、LED 灯等硬件交互实验。
+            </p>
+            <ul class="project-stack">
+              <li>Arduino Uno</li>
+              <li>C / C++</li>
+            </ul>
+            <ul class="project-work">
+              <li>编写嵌入式控制程序</li>
+              <li>实现传感器数据读取</li>
+              <li>完成交互逻辑设计</li>
+              <li>调试软硬件协同工作</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>05</span> 联系方式</h2>
+        <p class="contact-note">如果你对我的项目或合作感兴趣，欢迎通过以下方式联系我。</p>
+
+        <div class="contact-list">
+          <a href="mailto:kang000008@qq.com" class="contact-item">
+            <span class="contact-icon">✉</span>
+            <span class="contact-label">邮箱</span>
+            <span class="contact-value">kang000008@qq.com</span>
+          </a>
+
+          <a href="https://github.com/kang00000888" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span class="contact-icon">⌥</span>
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/kang00000888</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 数字助手 -->
+    <section id="assistant" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>06</span> 数字助手</h2>
+        <p class="contact-note">关于康选臣，直接输入问题即可，也可以点击下方快捷提问。</p>
+
+        <div class="assistant-panel" id="assistantPanel">
+          <header class="assistant-header">
+            <div class="assistant-header-info">
+              <span class="assistant-avatar">K</span>
+              <div>
+                <h4>康选臣数字助手</h4>
+                <p>关于康选臣，尽管问我</p>
+              </div>
+            </div>
+          </header>
+
+          <div class="assistant-messages" id="assistantMessages"></div>
+
+          <div class="assistant-suggestions" id="assistantSuggestions">
+            <button class="suggestion" data-q="你是谁？">你是谁？</button>
+            <button class="suggestion" data-q="你的专业是什么？">你的专业是什么？</button>
+            <button class="suggestion" data-q="你会哪些技术？">你会哪些技术？</button>
+            <button class="suggestion" data-q="你做过哪些项目？">你做过哪些项目？</button>
+            <button class="suggestion" data-q="你的开发环境是什么？">你的开发环境是什么？</button>
+            <button class="suggestion" data-q="如何联系你？">如何联系你？</button>
+          </div>
+
+          <form class="assistant-input" id="assistantForm">
+            <input type="text" id="assistantInput" placeholder="输入你的问题…" autocomplete="off" />
+            <button type="submit" aria-label="发送">发送</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 康选臣 · 上海师范大学计算机科学与技术</p>
+      <p class="footer-sub">Built with HTML / CSS / JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
