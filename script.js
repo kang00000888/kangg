@@ -38,7 +38,7 @@
      2. 滚动进入视口时的淡入动画
   ---------------------------------------------------------------------- */
   const revealEls = document.querySelectorAll(
-    '.skill-card, .project-card, .dev-item, .about-text'
+    '.skill-card, .project-card, .dev-item, .about-text, .timeline-item, .workflow-step'
   );
 
   if ('IntersectionObserver' in window) {
@@ -114,6 +114,11 @@
           '我的主页基于 Trae 开发，使用 Trae Agent 辅助编码，结合 DeepSeek-V4-Pro 完成开发，并通过 GitHub 进行版本管理。'
       },
       {
+        keywords: ['开发流程', '开发方式', '开发步骤', '怎么开发', '如何开发', '流程'],
+        answer:
+          '我的主页采用 Trae 作为 AI 开发环境，使用 Trae Agent 辅助代码设计，结合 DeepSeek-V4-Pro 完成开发，通过 GitHub 进行版本管理和部署。'
+      },
+      {
         keywords: [
           '数据', '可视化', '爬虫', 'arduino', '硬件', '电商',
           'scrapy', 'pandas', 'echarts', 'mongodb'
@@ -125,6 +130,11 @@
         keywords: ['兴趣', '爱好', '方向', '目标', '关注', '喜欢', '规划', '未来', '打算', '职业', '就业'],
         answer:
           '他目前关注 Web 开发、数据处理与可视化、智能交互等方向，通过课程实验与个人项目不断积累工程实践经验。'
+      },
+      {
+        keywords: ['学习方向', '发展方向', '主攻方向', '学什么方向', '研究什么', '学哪方面'],
+        answer:
+          '目前主要关注 Web 开发、数据分析以及 AI 应用方向，希望通过项目实践提升软件工程能力。'
       },
       {
         keywords: ['课程', '学了', '科目', '专业课', '学过', '课程安排', '软件工程', '数据库', '计算机网络'],
@@ -146,6 +156,8 @@
         '· 技术技能：你会哪些技术\n' +
         '· 项目经历：你做过哪些项目\n' +
         '· 开发环境：你的开发环境\n' +
+        '· 开发流程：你的开发流程\n' +
+        '· 学习方向：你的学习方向\n' +
         '· 联系方式：如何联系你\n\n' +
         '也可以直接输入关键词，比如「Python」「爬虫」「可视化」试试。'
       );

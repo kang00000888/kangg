@@ -199,13 +199,13 @@ ul {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.5px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
-  margin-bottom: 72px;
+  margin-bottom: 64px;
 }
 
 .btn {
@@ -262,6 +262,136 @@ ul {
 }
 
 /* ==========================================================================
+   数字生命档案 Digital Profile
+   ========================================================================== */
+
+.profile-panel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: profileIn 0.8s ease both;
+}
+
+@keyframes profileIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 顶部扫描光带 */
+.profile-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.5;
+  animation: scan 3.2s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(220%); }
+}
+
+.profile-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  font-family: var(--font-mono);
+}
+
+.profile-panel-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.profile-panel-sub {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+}
+
+.profile-list {
+  padding: 4px 0;
+}
+
+.profile-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.profile-row:last-child {
+  border-bottom: none;
+}
+
+.profile-key {
+  flex-shrink: 0;
+  width: 128px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 2px;
+}
+
+.profile-val {
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.profile-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.profile-focus span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-status i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 0.35; box-shadow: 0 0 0 0 rgba(237, 237, 240, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 0 5px rgba(237, 237, 240, 0); }
+}
+
+/* ==========================================================================
    通用 section
    ========================================================================== */
 
@@ -298,6 +428,109 @@ ul {
   font-size: 16px;
   color: var(--color-text-muted);
   margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   技术成长时间线
+   ========================================================================== */
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-accent);
+}
+
+.timeline-year {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.timeline-year-future {
+  color: var(--color-text-muted);
+}
+
+.timeline-body {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.timeline-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.timeline-block {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.timeline-block:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-label {
+  flex-shrink: 0;
+  width: 44px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 4px;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-tags li {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 5px 12px;
 }
 
 /* ==========================================================================
@@ -391,6 +624,68 @@ ul {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
+}
+
+/* AI 辅助开发 Workflow */
+.workflow {
+  margin-top: 40px;
+}
+
+.workflow-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.workflow-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.workflow-step {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.workflow-step:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+}
+
+.workflow-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.workflow-text {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.workflow-arrow {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--color-text-muted);
+  margin: 6px 0;
+}
+
+.workflow-note {
+  max-width: 560px;
+  margin: 24px auto 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 /* ==========================================================================
@@ -491,6 +786,20 @@ ul {
   width: 6px;
   height: 1px;
   background: var(--color-text-muted);
+}
+
+.project-gain {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.project-gain strong {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -765,12 +1074,35 @@ ul {
 }
 
 @media (max-width: 620px) {
+  html {
+    scroll-padding-top: 120px;
+  }
+
+  .nav-inner {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 0;
+  }
+
   .nav-links {
-    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 18px;
   }
 
   .hero-name {
     font-size: 40px;
+  }
+
+  .profile-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .profile-key {
+    width: auto;
   }
 
   .skills-grid,
